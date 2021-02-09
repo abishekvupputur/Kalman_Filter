@@ -1,0 +1,20 @@
+syms u v w px py pz phi theta psi lambda_x lambda_y lambda_z lambda_p lambda_q lambda_r u_wind v_wind w_wind;
+syms Ax Ay Az p q r;
+syms y1 y2 y3 y4 y5 y6 y7 y8 y9 y10 y11 y12;
+g=9.81;
+
+y1 = (u*cos(theta) + (v*sin(phi) + w*cos(phi))*sin(theta))*cos(psi) - (v*cos(phi) - w*sin(phi))*sin(psi) + u_wind;
+y2 = (u*cos(theta) + (v*sin(phi) + w*cos(phi))*sin(theta))*sin(psi) + (v*cos(phi) - w*sin(phi))*cos(psi) + v_wind;
+y3 = -u*sin(theta) + (v*sin(phi) + w*cos(phi))*cos(theta) + w_wind;
+y4 = px;
+y5 = py;
+y6 = pz;
+y7 = phi;
+y8 = theta;
+y9 = psi;
+y10 = sqrt(u^2 + v^2 + w^2);
+y11 = atan2(w,u);
+y12 = atan2(v,sqrt(u^2 + w^2));
+JHx = jacobian([y1 y2 y3 y4 y5 y6 y7 y8 y9 y10 y11 y12]',[u v w px py pz phi theta psi lambda_x lambda_y lambda_z lambda_p lambda_q lambda_r u_wind v_wind w_wind]);
+%save('Jacobian_H','JHx');
+%clear all;
